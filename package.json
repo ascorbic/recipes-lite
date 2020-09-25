@@ -11,8 +11,9 @@
         "dist"
     ],
     "scripts": {
-        "start": "microbundle watch --target node --jsx React.createElement -f cjs src/index.tsx",
-        "build": "microbundle build --target node --jsx React.createElement src/index.tsx",
+        "start": "yarn watch",
+        "watch": "microbundle watch --target node --jsx React.createElement -f cjs src/index.tsx",
+        "build": "microbundle build --target node --jsx React.createElement -f cjs src/index.tsx",
         "prepublishOnly": "yarn build",
         "test": "jest",
         "lint": "eslint src"
@@ -41,7 +42,6 @@
         "@types/node": "^14.11.2",
         "@types/prettier": "^2.1.1",
         "babel-preset-gatsby-package": "^0.5.3",
-        "eslint-config-xo-react": "^0.23.0",
         "eslint-plugin-react": "^7.21.1",
         "eslint-plugin-react-hooks": "^4.1.2",
         "ink-testing-library": "^2.0.1",

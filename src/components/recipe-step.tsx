@@ -1,6 +1,7 @@
 import { Box, Text } from "ink"
 import React from "react"
 import { StepInfo } from "../parser"
+import { ActionBox } from "./action"
 import { Markdown } from "./markdown"
 
 interface Props {
@@ -23,26 +24,10 @@ export function RecipeStep({ step }: Props) {
                         Actions
                     </Text>
                     {step.actions.map((action, index) => (
-                        <Box
-                            borderStyle="single"
-                            flexDirection="column"
-                            paddingX={1}
+                        <ActionBox
+                            action={action}
                             key={`${action.name}-${index}`}
-                        >
-                            <Box paddingBottom={1}>
-                                <Text bold underline>
-                                    {action.name}
-                                </Text>
-                            </Box>
-                            {Object.entries(action.args).map(([key, value]) => (
-                                <Box key={key}>
-                                    <Text bold>{key}: </Text>
-                                    <Box paddingLeft={1}>
-                                        <Text wrap="truncate-end">{value}</Text>
-                                    </Box>
-                                </Box>
-                            ))}
-                        </Box>
+                        />
                     ))}
                 </Box>
             )}
