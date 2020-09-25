@@ -1,16 +1,16 @@
 import { Box, Text } from "ink"
 import React from "react"
-import { StepAction } from "../../parser"
+import { StepResource } from "../../parser"
 
 interface Props {
-    action: StepAction
+    resource: StepResource
 }
 
-export function DefaultAction({ action }: Props) {
+export function DefaultResource({ resource }: Props) {
     return (
         <Box borderStyle="single" flexDirection="column" paddingX={1}>
             <Text bold underline>
-                {action.name}
+                {resource.name}
             </Text>
         </Box>
     )

@@ -1,18 +1,18 @@
 import { Box, Text } from "ink"
 import React from "react"
-import { StepAction } from "../../parser"
+import { StepResource } from "../../parser"
 
 interface Props {
-    action: StepAction
+    resource: StepResource
 }
 
-export function GatsbyPlugin({ action }: Props) {
+export function NPMPackage({ resource }: Props) {
     return (
         <Box borderStyle="single" flexDirection="column" paddingX={1}>
             <Text bold underline>
-                Enable Gatsby plugin
+                Install npm package
             </Text>
-            <Text>{action.args.name}</Text>
+            <Text>{resource.args.name}</Text>
         </Box>
     )
 }

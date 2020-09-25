@@ -39,12 +39,12 @@ function extractAttributeValue(node: MdxAttribute): unknown {
     }
 }
 
-export interface StepAction {
+export interface StepResource {
     name: string
     args: Record<string, unknown>
 }
 
-function parseAction(node: MdxBlockElement): StepAction {
+function parseResource(node: MdxBlockElement): StepResource {
     const args: Record<string, unknown> = {}
     node.attributes.forEach((attr) => {
         args[attr.name] = extractAttributeValue(attr)
@@ -57,16 +57,16 @@ function parseAction(node: MdxBlockElement): StepAction {
 
 export interface StepInfo {
     description: string
-    actions: Array<StepAction>
+    resources: Array<StepResource>
 }
 
 function makeStepInfo(
     nodes: Array<Node>,
-    actions: Array<MdxBlockElement>
+    resources: Array<MdxBlockElement>
 ): StepInfo {
     return {
         description: u.stringify({ type: "root", children: nodes }),
-        actions: actions.map(parseAction),
+        resources: resources.map(parseResource),
     }
 }
 
@@ -78,26 +78,26 @@ export function partitionSteps(ast: Node | Parent) {
 
     let nodes: Array<Node> = []
 
-    let actions: Array<MdxBlockElement> = []
+    let resources: Array<MdxBlockElement> = []
 
     ast.children.forEach((node: Node) => {
         switch (node.type) {
             case "thematicBreak":
-                steps.push(makeStepInfo(nodes, actions))
+                steps.push(makeStepInfo(nodes, resources))
                 nodes = []
-                actions = []
+                resources = []
                 break
 
             case "mdxBlockElement":
-                actions.push(node as MdxBlockElement)
+                resources.push(node as MdxBlockElement)
                 break
 
             default:
                 nodes.push(node)
         }
     })
-    if (nodes.length || actions.length) {
-        steps.push(makeStepInfo(nodes, actions))
+    if (nodes.length || resources.length) {
+        steps.push(makeStepInfo(nodes, resources))
     }
 
     return steps

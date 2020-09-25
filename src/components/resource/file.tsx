@@ -1,18 +1,18 @@
 import { Box, Text } from "ink"
 import React from "react"
-import { StepAction } from "../../parser"
+import { StepResource } from "../../parser"
 
 interface Props {
-    action: StepAction
+    resource: StepResource
 }
 
-export function File({ action }: Props) {
+export function File({ resource }: Props) {
     return (
         <Box borderStyle="single" flexDirection="column" paddingX={1}>
             <Text bold underline>
                 Create file
             </Text>
-            <Text>{action.args.path}</Text>
+            <Text>{resource.args.path}</Text>
         </Box>
     )
 }

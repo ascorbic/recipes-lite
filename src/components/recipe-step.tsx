@@ -1,7 +1,7 @@
 import { Box, Text } from "ink"
 import React from "react"
 import { StepInfo } from "../parser"
-import { ActionBox } from "./action"
+import { ResourceBox } from "./resource"
 import { Markdown } from "./markdown"
 
 interface Props {
@@ -18,15 +18,15 @@ export function RecipeStep({ step }: Props) {
             flexBasis="100%"
         >
             <Markdown source={step.description} />
-            {!!step.actions.length && (
+            {!!step.resources.length && (
                 <Box flexDirection="column">
                     <Text bold underline>
-                        Actions
+                        Resources
                     </Text>
-                    {step.actions.map((action, index) => (
-                        <ActionBox
-                            action={action}
-                            key={`${action.name}-${index}`}
+                    {step.resources.map((resource, index) => (
+                        <ResourceBox
+                            resource={resource}
+                            key={`${resource.name}-${index}`}
                         />
                     ))}
                 </Box>
